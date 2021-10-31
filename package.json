@@ -1,0 +1,27 @@
+{
+  "name": "todo-app-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "pretty-quick": "pretty-quick",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PesivadiyaRutvik/Todo-App-Backend.git"
+  },
+  "author": "Rutvik Pesivadiya",
+  "bugs": {
+    "url": "https://github.com/PesivadiyaRutvik/Todo-App-Backend/issues"
+  },
+  "homepage": "https://github.com/PesivadiyaRutvik/Todo-App-Backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.13"
+  }
+}
