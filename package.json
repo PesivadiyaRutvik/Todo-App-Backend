@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "license": "MIT",
   "scripts": {
     "start": "node app.js",
     "pretty-quick": "pretty-quick",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "lint": "eslint \"src/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -18,10 +20,15 @@
   },
   "homepage": "https://github.com/PesivadiyaRutvik/Todo-App-Backend#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "dotenv": "^10.0.0"
   },
   "devDependencies": {
-    "dotenv": "^10.0.0",
+    "eslint": "^8.1.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
     "husky": "^4.3.0",
     "nodemon": "^2.0.13",
     "prettier": "^2.4.1",
@@ -29,7 +36,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --stag"
+      "pre-commit": "pretty-quick --stag && npm run lint"
     }
   }
 }

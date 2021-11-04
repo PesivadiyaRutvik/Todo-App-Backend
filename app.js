@@ -1,8 +1,8 @@
 // config the .env
-require("dotenv").config({ path: "./config/.env" });
+require('dotenv').config({ path: './config/.env' });
 
 const express = require('express');
-const taskRouter = require('./route/task');
+const taskRouter = require('./src/route/task');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -17,5 +17,5 @@ app.use('/api/v1/tasks', taskRouter);
 // delete - '{URL}/api/v1/tasks/:id' - delete one task
 
 app.listen(port, () => {
-    console.log(`Server running ona port: ${port}`);
+  console.log(`Server running ona port: ${port}`);
 });
