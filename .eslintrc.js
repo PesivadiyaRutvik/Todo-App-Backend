@@ -9,6 +9,12 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
+    'no-console': 'error',
+    'func-names': 'off',
+    'no-underscore-dangle': 'off',
+    'consistent-return': 'off',
+    'jest/expect-expect': 'off',
+    'security/detect-object-injection': 'off',
   },
   plugins: ['prettier'],
 };

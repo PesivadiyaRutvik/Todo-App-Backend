@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node app.js",
     "pretty-quick": "pretty-quick",
-    "dev": "nodemon app.js",
+    "dev": "nodemon src/app.js",
     "lint": "eslint \"src/**/*.js\""
   },
   "repository": {
@@ -20,8 +20,9 @@
   },
   "homepage": "https://github.com/PesivadiyaRutvik/Todo-App-Backend#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "dotenv": "^10.0.0"
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "eslint": "^8.1.0",
