@@ -1,21 +1,59 @@
-const getAllTasks = (req, res) => {
-  res.send('get all tasks');
+const TaskModel = require('../models/taskModel');
+const logger = require('../config/logger');
+
+const getAllTasks = async (req, res) => {
+  try {
+    const allTasks = await TaskModel.find({});
+    res.send([...allTasks]);
+  } catch (err) {
+    logger.error(err);
+  }
 };
 
-const getTask = (req, res) => {
-  res.send(`get one tasks: ${req.params.id}`);
+const getTask = async (req, res) => {
+  try {
+    const getOneTask = await TaskModel.findById({ _id: req.params.id });
+    if (!getOneTask) {
+      res.status(400).send('no task found');
+    }
+    res.send(getOneTask);
+  } catch (err) {
+    logger.error(err);
+  }
 };
 
-const addTask = (req, res) => {
-  res.json(req.body);
+const addTask = async (req, res) => {
+  try {
+    const taskModel = new TaskModel(req.body);
+    await TaskModel.create(taskModel);
+    res.send(taskModel);
+  } catch (err) {
+    logger.error(err);
+  }
 };
 
-const updateTask = (req, res) => {
-  res.send(`update task: ${req.params.id}`);
+const updateTask = async (req, res) => {
+  try {
+    const updatedDocument = await TaskModel.findOneAndUpdate({ _id: req.params.id }, req.body);
+    if (!updatedDocument) {
+      res.status(404).send('Task not found');
+    }
+    res.send(updatedDocument);
+  } catch (err) {
+    logger.error(err);
+  }
 };
 
-const deleteTask = (req, res) => {
-  res.send(`delete task: ${req.params.id}`);
+const deleteTask = async (req, res) => {
+  try {
+    const deletedDocument = await TaskModel.findOneAndDelete({ _id: req.params.id }, req.body);
+    if (!deletedDocument) {
+      res.status(404).send('Task not found');
+    }
+    res.send(deletedDocument);
+  } catch (err) {
+    logger.error(err);
+  }
 };
 
 module.exports = {

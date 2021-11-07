@@ -4,11 +4,18 @@ const logger = require('./config/logger');
 
 // config the .env
 require('dotenv').config({ path: path.join(__dirname, './config/.env') });
+
+const database = require('./config/db');
 const taskRouter = require('./route/task');
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+// parse json request body
 app.use(express.json());
+
+// parse urlencoded request body
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1/tasks', taskRouter);
 
@@ -18,6 +25,16 @@ app.use('/api/v1/tasks', taskRouter);
 // patch - '{URL}/api/v1/tasks/:id' - update the task
 // delete - '{URL}/api/v1/tasks/:id' - delete one task
 
-app.listen(port, () => {
-  logger.info(`Server running on a port: ${port}`);
-});
+const astiblistedConnections = async () => {
+  try {
+    const dbURL = process.env.DB_URL;
+    await database(dbURL);
+    app.listen(port, () => {
+      logger.info(`Server running on a port: ${port}`);
+    });
+  } catch (err) {
+    logger.error(err);
+  }
+};
+
+astiblistedConnections();
